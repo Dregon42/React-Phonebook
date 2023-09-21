@@ -1,10 +1,8 @@
 // Store is like a mini temporary in-middle database
 import { configureStore } from "@reduxjs/toolkit";
-import reducer  from "./slices/RootSlice";
+import { reducer } from "./slices/RootSlice";
 
 export const store = configureStore({
-   reducer: {
-      
-   },
+   reducer,
    devTools: true, 
 }) 

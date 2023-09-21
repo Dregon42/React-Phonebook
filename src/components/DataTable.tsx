@@ -6,10 +6,11 @@ import { DataGrid, GridColDef } from '@mui/x-data-grid';
 import { useGetData } from '../custom-hooks/FetchData';
 
 const columns: GridColDef[] = [
-    { field: 'name', headerClassName: 'Contact Name', flex: 1 },
-    { field: 'email', headerClassName: 'Email', flex: 1 },
-    { field: 'phone_number', headerClassName: 'Phone Number', flex: 1 },
-    { field: 'address', headerClassName: 'Address', flex: 2}
+    { field: 'id', headerName: 'Id', width: 90, hide:true },
+    { field: 'name', headerName: 'Contact Name', flex: 1 },
+    { field: 'email', headerName: 'Email', flex: 1 },
+    { field: 'phone_number', headerName: 'Phone Number', flex: 1 },
+    { field: 'address', headerName: 'Address', flex: 2}
 ]
 
 
@@ -40,6 +41,7 @@ function DataTable() {
         <Modal 
             open={open}
             onClose={handleClose}
+            id={rowSelectionModel}
         />
         <div className="flex flex-row">
             <div>
@@ -57,7 +59,7 @@ function DataTable() {
         style={{ height: 400, width: '100%' }}>
             <h2 className="p-3 bg-slate-300 my-2 rounded">My Contacts</h2>
             <DataGrid rows={contactData}columns={columns}
-            autoPageSize checkboxSelection={true} onRowSelectionModelChange={(item: any[]) => {
+            autoPageSize checkboxSelection={true} onSelectionModelChange={(item: any) => {
                 setRowSelectionModel(item)}}/>
 
         </div>

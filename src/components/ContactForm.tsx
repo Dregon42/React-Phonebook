@@ -22,8 +22,8 @@ const ContactForm = (props:ContactFormProps) => {
       if (props.id && props.id.length > 0) {
         server_calls.update(props.id[0], data)
         console.log(`Updated: ${ data } ${ props.id }`)
-        // setTimeout(() => {window.location.reload(), 500});
-        // event.target.reset()
+        setTimeout(() => {window.location.reload(), 500});
+        event.target.reset()
       } else {
         // Use dispatch to update our state in our store
         dispatch(chooseName(data.name));
@@ -32,7 +32,7 @@ const ContactForm = (props:ContactFormProps) => {
         dispatch(chooseAddress(data.address));
 
         server_calls.create(store.getState());
-        // setTimeout(() => {window.location.reload(), 500})
+        setTimeout(() => {window.location.reload(), 500})
       }
     }
 
@@ -41,19 +41,19 @@ const ContactForm = (props:ContactFormProps) => {
       <form onSubmit={handleSubmit(onSubmit)}>
         <div>
           <label htmlFor="name">Contact Name</label>
-          <Input  {...register('first')} name='Name' placeholder="Name" />
+          <Input  {...register('name')} name='name' placeholder="Name" />
         </div>
         <div>
           <label htmlFor="email">Email</label>
-          <Input {...register('email')} name='Email' placeholder="Email" />
+          <Input {...register('email')} name='email' placeholder="Email" />
         </div>
         <div>
           <label htmlFor="phone_number">Phone Number</label>
-          <Input {...register('phone_number')} name='Phone_number' placeholder="Phone Number" />
+          <Input {...register('phone_number')} name='phone_number' placeholder="Phone Number" />
         </div>
         <div>
           <label htmlFor="address">Address</label>
-          <Input {...register('address')} name='Address' placeholder="Address" />
+          <Input {...register('address')} name='address' placeholder="Address" />
         </div>
         <div className="flex p-1">
           <Button className="flex justify-start m-3 bg-slate-300 p-2 rounded hover:bg-slate-800 text-white"
@@ -66,4 +66,4 @@ const ContactForm = (props:ContactFormProps) => {
   )
 }
   
-  export default ContactForm
+export default ContactForm
