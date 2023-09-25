@@ -1,10 +1,25 @@
-import { useState } from 'react'
-import { Link } from 'react-router-dom'
-import Button from './Button'
+import { useState } from 'react';
+import { Link } from 'react-router-dom';
+import Button from './Button';
+import { signInWithPopup, signOut } from 'firebase/auth'
+import { auth, Providers } from '../config/firebase';
+
 
 function Navbar() {
 
     const [isVisible, setIsVisible] = useState(false)
+
+    const signOutOnClick = () => {
+        signOut(auth)
+        location.reload();
+    }
+
+    const signInOnClick = async () => {
+        const response = await signInWithPopup(auth, Providers.google);
+        if ( response.user ) {
+            location.reload();
+        }
+    }
 
     const dropDown = () => {
         setIsVisible(!isVisible)
@@ -48,6 +63,25 @@ function Navbar() {
                         </Link>
                     </div>
                 </Button>
+                {
+                    !auth.currentUser ?
+
+                    <Button className='p-3 m-5 bg-teal-400 justify-center'>
+                        <div>
+                            <Link onClick={signInOnClick} to='/' className='flex place-itmes-center mt-2 lg:inline-block lg:mt-0 text-teal-200 hover:text-white mr-4'>
+                                Sign In
+                            </Link>
+                        </div>
+                    </Button>
+                    :
+                    <Button className='p-3 m-5 bg-teal-400 justify-center'>
+                        <div>
+                            <Link onClick={signOutOnClick} to='/' className='flex place-itmes-center mt-2 lg:inline-block lg:mt-0 text-teal-200 hover:text-white mr-4'>
+                                Sign Out
+                            </Link>
+                        </div>
+                    </Button>
+                }
             </div>
         </div>
         ) : (

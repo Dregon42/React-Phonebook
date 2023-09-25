@@ -42,7 +42,7 @@ export const server_calls = {
     update:async (id:string, data: any) => {
         const response = await fetch(`https://phonebook-nusn.onrender.com/api/contacts/${id}`,
         {
-            method: 'POST' ,
+            method: 'PUT' ,
             headers: {
                 'Content-Type': 'application/json',
                 'Access-Control-Allow-Origin': '*',

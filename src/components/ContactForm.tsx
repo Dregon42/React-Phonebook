@@ -22,7 +22,7 @@ const ContactForm = (props:ContactFormProps) => {
       if (props.id && props.id.length > 0) {
         server_calls.update(props.id[0], data)
         console.log(`Updated: ${ data } ${ props.id }`)
-        setTimeout(() => {window.location.reload(), 500});
+        setTimeout(() => {window.location.reload()});
         event.target.reset()
       } else {
         // Use dispatch to update our state in our store
@@ -32,7 +32,7 @@ const ContactForm = (props:ContactFormProps) => {
         dispatch(chooseAddress(data.address));
 
         server_calls.create(store.getState());
-        setTimeout(() => {window.location.reload(), 500})
+        setTimeout(() => {window.location.reload()})
       }
     }
 

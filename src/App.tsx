@@ -4,6 +4,8 @@ import Navbar from "./components/Navbar";
 import { Provider } from 'react-redux'
 import { store } from "./redux/store";
 
+import AuthTracker from "./auth/AuthTracker";
+
 
 
 function App() {
@@ -18,7 +20,13 @@ function App() {
               key={index}
               path={route.path}
               element={
-              <route.component />
+                route.protected ? (
+                  <AuthTracker>
+                    <route.component />
+                  </AuthTracker> 
+                ) : (
+                  <route.component />
+                )
             } /> 
           )) } 
         </Routes>
